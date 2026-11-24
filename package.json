@@ -1,0 +1,31 @@
+{
+  "name": "automationexercise-bdd-playwright",
+  "version": "1.0.0",
+  "description": "Enterprise-grade playwright-bdd + Page Object Model QA automation framework for https://automationexercise.com/",
+  "private": true,
+  "scripts": {
+    "bdd:gen": "bddgen",
+    "test:bdd": "bddgen && playwright test",
+    "test:smoke": "bddgen && playwright test --grep @smoke",
+    "test:regression": "bddgen && playwright test --grep @regression",
+    "test:chrome": "bddgen && playwright test --project=bdd-chrome",
+    "test:firefox": "bddgen && playwright test --project=bdd-firefox",
+    "test:edge": "bddgen && playwright test --project=bdd-edge",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "playwright-bdd",
+    "gherkin",
+    "cucumber",
+    "pom",
+    "qa-automation",
+    "automationexercise"
+  ],
+  "author": "Aldo Pontoh",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "playwright-bdd": "^9.2.1"
+  }
+}

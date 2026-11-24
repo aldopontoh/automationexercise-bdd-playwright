@@ -1,0 +1,11 @@
+# ISTQB Test Case Matrix: Contact Us & Support (`contact-support`)
+
+**PRD Source**: [docs/prd/contact-support.md](../prd/contact-support.md)  
+**Design Techniques Applied**: Equivalence Partitioning (EP), Boundary Value Analysis (BVA), State Transition Testing (STT), Error Guessing (EG).
+
+| Test ID | Requirement ID | Priority | Test Type | Design Technique | Preconditions | Test Steps | Test Data | Expected Result |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC-CNT-01** | `REQ-CNT-01` | P0 (`@smoke`) | Positive / Accessibility & SEO | Equivalence Partitioning | Guest user | 1. Navigate to `/contact_us`.<br>2. Verify `<title>`, headings (`Get In Touch`, `Feedback For Us`), all inputs (`Name`, `Email`, `Subject`, `Your Message Here`, `upload_file`), and `Submit` button. | URL: `/contact_us` | `<title>` equals `Automation Exercise - Contact Us`; headings and all form controls are visible and accessible. |
+| **TC-CNT-02** | `REQ-CNT-02` | P1 (`@regression`) | Positive / File Upload & Dialog | Equivalence Partitioning | Guest user on `/contact_us` | 1. Fill Name, Email, Subject, Message.<br>2. Upload `test-data/sample-contact-upload.txt` via `input[name="upload_file"]`.<br>3. Register dialog handler to accept `confirm()`.<br>4. Click `Submit`. | Dynamic `testDataFactory.createContactMessage()` + `sample-contact-upload.txt` | Native confirm dialog is accepted and `.status.alert.alert-success` displays `"Success! Your details have been submitted successfully."`. |
+| **TC-CNT-03** | `REQ-CNT-03` | P1 (`@regression`) | Positive / State Transition | State Transition Testing | Contact Us form successfully submitted | 1. Verify success banner is visible.<br>2. Click the `Home` return button inside `#form-section`.<br>3. Verify URL and Home page title. | Route transition: `/contact_us` → `/` | Browser navigates cleanly to `/` with title `Automation Exercise`. |
+| **TC-CNT-04** | `REQ-CNT-04` | P2 (`@regression`) | Negative / Input Validation | Boundary Value Analysis & Error Guessing | Guest user on `/contact_us` | 1. Fill Name, Subject, Message but leave Email empty (or malformed).<br>2. Click `Submit`.<br>3. Check HTML5 `checkValidity()` on Email input and verify success banner is hidden. | Email: `""` (empty) | Native HTML5 validation fails (`checkValidity() === false`) and success banner remains hidden. |

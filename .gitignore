@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Playwright & BDD generated artifacts
+test-results/
+playwright-report/
+.features-gen/
+.playwright-mcp/
+
+# Environment & secrets
+.env
+.env.*
+
+# Logs & OS artifacts
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
